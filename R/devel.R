@@ -86,10 +86,10 @@ simData2 <- function(x,
     }, vector("list", length(cats)))
    
     # sample reference clusters & samples
-    #bids0_use <- set_names(sample(bids0, nb, nb > nb0), bids)
-    #kids0_use <- setNames(sample(kids0, nk, nk > nk0), kids)
-    bids0_use <- set_names(rep(sample(bids0, 1), nb), bids)
-    kids0_use <- set_names(rep(sample(kids0, 1), nk), kids)
+    bids0_use <- set_names(sample(bids0, nb, nb > nb0), bids)
+    kids0_use <- setNames(sample(kids0, nk, nk > nk0), kids)
+    # bids0_use <- set_names(rep(sample(bids0, 1), nb), bids)
+    # kids0_use <- set_names(rep(sample(kids0, 1), nk), kids)
     if (paired) { 
         # use same set of reference samples for all groups
         sids0_use <- sample(sids0, ns, ns > ns0)
@@ -98,8 +98,8 @@ simData2 <- function(x,
         # draw reference samples at random for each group
         sids0_use <- replicate(length(gids), sample(sids0, ns, ns > ns0))
     }
-    sids0_use <- rep(sample(sids0, 1), ns)
-    sids0_use <- replicate(2, sids0_use)
+    # sids0_use <- rep(sample(sids0, 1), ns)
+    # sids0_use <- replicate(2, sids0_use)
     dimnames(sids0_use) <- list(sids, gids)
   
     # sample logFCs for each cluster-category
