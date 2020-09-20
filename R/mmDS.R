@@ -66,7 +66,7 @@
 #' @importFrom stats p.adjust
 #' @export
 
-mmDS <- function(x, coef = NULL, covs = NULL,
+mmDS <- function(x, coef = NULL, covs = NULL, sct.method = 'glmGamPoi',
     method = c("dream2", "dream", "vst", "poisson", "nbinom", "hybrid"),
     n_cells = 10, n_samples = 2, min_count = 1, min_cells = 20,
     n_threads = 1, verbose = TRUE, vst = c("sctransform", "DESeq2"),
@@ -123,7 +123,7 @@ mmDS <- function(x, coef = NULL, covs = NULL,
     # variance-stabilizing transformation
     if (args$method == "vst" && !"vstresiduals" %in% assayNames(x)) {
         vst_call <- switch(args$vst,
-            sctransform = expression(.vst_sctransform(x, verbose)),
+            sctransform = expression(.vst_sctransform(x, verbose, sct.method = sct.method)),
             DESeq2 = expression(.vst_DESeq2(x, covs, blind)))
         if (verbose) {
             assay(x, "vstresiduals", FALSE) <- eval(vst_call)
