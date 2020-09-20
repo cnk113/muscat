@@ -506,7 +506,7 @@
 #' @importFrom SingleCellExperiment counts
 .vst_sctransform <- function(x, verbose) {
     sctransform::vst(counts(x), n_genes = NULL, method = 'glmGamPoi',
-        min_cells = 5, # assure that all genes are retained
+        min_cells = 0, # assure that all genes are retained
         )$y
 }
 # ------------------------------------------------------------------------------
