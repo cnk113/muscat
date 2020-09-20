@@ -123,7 +123,7 @@ mmDS <- function(x, coef = NULL, covs = NULL, sct.method = 'glmGamPoi',
     # variance-stabilizing transformation
     if (args$method == "vst" && !"vstresiduals" %in% assayNames(x)) {
         vst_call <- switch(args$vst,
-            sctransform = expression(.vst_sctransform(x, verbose, sct.method = sct.method),
+            sctransform = expression(.vst_sctransform(x, verbose, sct.method = sct.method)),
             DESeq2 = expression(.vst_DESeq2(x, covs, blind)))
         if (verbose) {
             assay(x, "vstresiduals", FALSE) <- eval(vst_call)
